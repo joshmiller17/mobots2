@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/SignalKinematic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/background.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Background.gd" type="Script" id=4]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=5]
+
+[node name="Main" type="Node" index="0"]
+
+script = ExtResource( 1 )
+Signal = ExtResource( 2 )
+
+[node name="Background" type="Node" parent="." index="0"]
+
+[node name="Background1" type="Sprite" parent="Background" index="0"]
+
+position = Vector2( 1840, 633.836 )
+scale = Vector2( 2.3, 2.50067 )
+z_index = -1
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Z Index" ]
+
+[node name="Background2" type="Sprite" parent="Background" index="1"]
+
+position = Vector2( 0, 633.686 )
+scale = Vector2( 2.3, 2.50067 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 3 )
+flip_h = true
+script = ExtResource( 4 )
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Z Index" ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="1"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="HUD" parent="CanvasLayer" index="0" instance=ExtResource( 5 )]
+
+[node name="NinjaModeTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="SignalSpawner" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = true
+_sections_unfolded = [ "Pause" ]
+
+[connection signal="timeout" from="SignalSpawner" to="." method="_on_SignalSpawner_timeout"]
+
+
