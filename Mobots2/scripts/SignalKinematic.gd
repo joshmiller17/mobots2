@@ -8,6 +8,7 @@ var g_speed
 var speed
 var selected = false
 var old_pos = Vector2(0,0)
+var intensity = 0
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -25,6 +26,19 @@ func _process(delta):
 		position.y += speed * delta
 	else:
 		old_pos.y += speed * delta
+	if position.y > 700:
+		if not intensity:
+			if position.x < 500:
+				get_node("/root/Main").success()
+			else:
+				get_node("/root/Main").fail()
+		else:
+			if position.x < 500:
+				get_node("/root/Main").fail()
+			else:
+				get_node("/root/Main").success()
+		queue_free()
+		
 	
 func on_ninja_mode():
 	speed = g_speed / 4

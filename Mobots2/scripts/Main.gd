@@ -16,6 +16,7 @@ signal ninja_off
 var screen_center
 var global_speed = 100
 var selected
+var score = 0
 
 func _ready():
 	# Center window
@@ -136,6 +137,19 @@ func _calculate_swipe(swipe_end):
 				closest_signal.ninja_select(screen_center / 2)
 				selected = closest_signal
 
+func success():
+	score += 1
+	$Correct.play()
+	update_score()
+	
+func fail():
+	score -= 1
+	$Incorrect.play()
+	update_score()
+	
+func update_score():
+	get_node("/root/Main/CanvasLayer/HUD/ScoreLabel").set_text("SCORE: " + str(score))
+	
 func _on_SignalSpawner_timeout():
 	$SignalSpawner.wait_time -= 0.05 # constantly get faster
 	$NinjaModeTimer.wait_time -= 0.05 # constantly get faster
@@ -147,8 +161,10 @@ func _on_SignalSpawner_timeout():
 	var data
 	if randf() < 0.5: # randomly select file
 		data = data3
+		sig.intensity = 0
 	else:
 		data = data4
+		sig.intensity = 1
 	for i in range(800):
 		var pool = data.get_csv_line()
 		X_data.append(Vector2(float(pool[0]) * 2.5, i/20))

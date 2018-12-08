@@ -13,7 +13,7 @@ use_filter = false
 font_data = SubResource( 1 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="HUD" type="Node" index="0"]
+[node name="HUD" type="Node"]
 
 [node name="ScoreLabel" type="Label" parent="." index="0"]
 

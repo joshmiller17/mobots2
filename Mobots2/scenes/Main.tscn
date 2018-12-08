@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/SignalKinematic.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/slice.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/Upbeat Flighty Techno - Royalty Free Music (fast tempo synth rock) + Download link.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/zip.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/correct.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/incorrect.wav" type="AudioStream" id=10]
 
 [node name="Main" type="Node" index="0"]
 
@@ -49,7 +51,7 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 [node name="NinjaModeTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 autostart = false
 
@@ -80,6 +82,22 @@ bus = "Master"
 [node name="Zip" type="AudioStreamPlayer" parent="." index="6"]
 
 stream = ExtResource( 8 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Correct" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 9 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Incorrect" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 10 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0
