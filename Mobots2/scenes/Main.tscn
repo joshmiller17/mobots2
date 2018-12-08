@@ -48,6 +48,8 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="HUD" parent="CanvasLayer" index="0" instance=ExtResource( 5 )]
 
+_sections_unfolded = [ "Pause" ]
+
 [node name="NinjaModeTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
