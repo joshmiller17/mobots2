@@ -1,6 +1,4 @@
-[gd_scene load_steps=4 format=2]
-
-[ext_resource path="res://scenes/Multiplier.tscn" type="PackedScene" id=1]
+[gd_scene load_steps=3 format=2]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -15,7 +13,7 @@ use_filter = false
 font_data = SubResource( 1 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="HUD" type="Node"]
+[node name="HUD" type="Node" index="0"]
 
 [node name="ScoreLabel" type="Label" parent="." index="0"]
 
@@ -38,10 +36,5 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Margin", "Size Flags", "custom_fonts" ]
-
-[node name="Multiplier" parent="." index="1" instance=ExtResource( 1 )]
-
-position = Vector2( 90, 50 )
-_sections_unfolded = [ "Transform" ]
 
 

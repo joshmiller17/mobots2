@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/SignalKinematic.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/background.png" type="Texture" id=3]
 [ext_resource path="res://scripts/Background.gd" type="Script" id=4]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/slice.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/Upbeat Flighty Techno - Royalty Free Music (fast tempo synth rock) + Download link.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/zip.wav" type="AudioStream" id=8]
 
 [node name="Main" type="Node" index="0"]
 
@@ -46,17 +49,43 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 [node name="NinjaModeTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 3.0
 one_shot = true
 autostart = false
 
 [node name="SignalSpawner" type="Timer" parent="." index="3"]
 
 process_mode = 1
-wait_time = 2.0
+wait_time = 4.0
 one_shot = false
 autostart = true
 _sections_unfolded = [ "Pause" ]
+
+[node name="Slice" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="BGM" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[node name="Zip" type="AudioStreamPlayer" parent="." index="6"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="timeout" from="NinjaModeTimer" to="." method="_on_NinjaModeTimer_timeout"]
 
 [connection signal="timeout" from="SignalSpawner" to="." method="_on_SignalSpawner_timeout"]
 
